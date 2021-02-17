@@ -49,6 +49,12 @@ public class Intefaz extends javax.swing.JFrame {
         jLabelTitulo.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabelTitulo.setText("Antivirus - Waa");
 
+        jTextFieldRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldRutaActionPerformed(evt);
+            }
+        });
+
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +62,9 @@ public class Intefaz extends javax.swing.JFrame {
             }
         });
 
-        jTextAreaContenidoBytes.setColumns(20);
+        jTextAreaContenidoBytes.setEditable(false);
+        jTextAreaContenidoBytes.setColumns(15);
+        jTextAreaContenidoBytes.setLineWrap(true);
         jTextAreaContenidoBytes.setRows(5);
         jScrollPane1.setViewportView(jTextAreaContenidoBytes);
 
@@ -79,13 +87,13 @@ public class Intefaz extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                            .addComponent(jTextFieldRuta))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonAnalizar)
                             .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(110, 110, 110))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +109,7 @@ public class Intefaz extends javax.swing.JFrame {
                             .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,7 +147,7 @@ public class Intefaz extends javax.swing.JFrame {
         
             cadena = cadena + " " + contenidoBytes [i];
         }
-        
+        jTextFieldRuta.setText(archivo.getPath());
         jTextAreaContenidoBytes.setText(cadena);
           
     }//GEN-LAST:event_jButtonBuscarActionPerformed
@@ -151,6 +159,10 @@ public class Intefaz extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButtonAnalizarActionPerformed
+
+    private void jTextFieldRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldRutaActionPerformed
 
     /**
      * @param args the command line arguments
