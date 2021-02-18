@@ -12,12 +12,12 @@ public class Virus {
     
     public Virus(String nomVirus, byte[] secuVirus){ //En el metodo Virus, se encuentran los parametros String nomVirus, el cuál menciona el nombre del Virus, y byte [] secuVirus, el cual menciona la secuencia del respectivo Virus. 
         //instancia para cada uno de los virus.
-        this.nomVirus = nomVirus;
-        this.secuVirus = secuVirus;
+        this.nomVirus = nomVirus; //almacena nombre de virus (en su atributo).
+        this.secuVirus = secuVirus; //almacena secuencia de virus (en su atributo). 
     }
 
     public byte[] getSecuVirus() { //permitir acceder a atributos privados. 
-        return secuVirus;
+        return secuVirus; //devuelve secuencia de virus. 
     }
     
     
