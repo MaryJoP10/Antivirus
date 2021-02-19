@@ -62,7 +62,7 @@ public class Analizador {
                         if(contenidoBytes [i+3] == listaVirus [0].getSecuVirus()[3])
                         {
                             virus = true;
-                            JOptionPane.showMessageDialog(null, "¡Se encontró el Virus Usama!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "¡Se encontró el Virus Usama!", "Advertencia", JOptionPane.WARNING_MESSAGE); //Ventana emergente con mensaje. 
                             estado = "q14";
                         }
                     }

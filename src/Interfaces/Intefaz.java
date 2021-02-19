@@ -7,15 +7,19 @@ package Interfaces;
 
 import Procesos.Analizador;
 import Procesos.Archivos;
+import Procesos.Eliminar;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 
 public class Intefaz extends javax.swing.JFrame {
-    private byte [] contenidoBytes = null; 
+    private byte [] contenidoBytes = null;
+    private File ficheros;
+    private File ficheros_1;
     /**
      * Creates new form IntefazAntivirus
      */
@@ -48,13 +52,19 @@ public class Intefaz extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextFieldVirus = new javax.swing.JTextField();
         jTextFieldSec = new javax.swing.JTextField();
-        jButtonAgregarV = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaVirus = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaSec = new javax.swing.JTextArea();
         jButtonAgregarS = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txt_arch = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txt_borrado = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        btn_analizar = new javax.swing.JButton();
+        txt_procesado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -156,12 +166,12 @@ public class Intefaz extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addComponent(jButtonAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(23, Short.MAX_VALUE))))
+                        .addContainerGap(27, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -175,7 +185,7 @@ public class Intefaz extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9))
@@ -206,17 +216,6 @@ public class Intefaz extends javax.swing.JFrame {
             }
         });
 
-        jButtonAgregarV.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonAgregarV.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButtonAgregarV.setText("Agregar");
-        jButtonAgregarV.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 255), null, new java.awt.Color(204, 204, 255)));
-        jButtonAgregarV.setBorderPainted(false);
-        jButtonAgregarV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAgregarVActionPerformed(evt);
-            }
-        });
-
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jTextAreaVirus.setEditable(false);
@@ -232,7 +231,7 @@ public class Intefaz extends javax.swing.JFrame {
         jTextAreaSec.setColumns(20);
         jTextAreaSec.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextAreaSec.setRows(5);
-        jTextAreaSec.setText("15,30,15,49\n72,72,15,29\n29,32,53,29\n72,32,32,20\n30,25,20,19");
+        jTextAreaSec.setText("15,15,15,15\n15,15,15,15\n15,15,15,15\n15,15,15,15\n15,15,15,15");
         jScrollPane3.setViewportView(jTextAreaSec);
 
         jButtonAgregarS.setBackground(new java.awt.Color(204, 204, 255));
@@ -260,21 +259,15 @@ public class Intefaz extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jTextFieldVirus, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jButtonAgregarV)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                         .addGap(83, 83, 83)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jTextFieldSec, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
-                        .addComponent(jButtonAgregarS)
-                        .addGap(129, 129, 129))))
+                            .addComponent(jTextFieldSec, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(jButtonAgregarS)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,29 +278,78 @@ public class Intefaz extends javax.swing.JFrame {
                     .addComponent(jTextFieldSec, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldVirus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAgregarV)
-                    .addComponent(jButtonAgregarS))
+                .addComponent(jButtonAgregarS)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lista de virus", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
+        txt_arch.setColumns(20);
+        txt_arch.setLineWrap(true);
+        txt_arch.setRows(5);
+        jScrollPane4.setViewportView(txt_arch);
+
+        txt_borrado.setColumns(20);
+        txt_borrado.setLineWrap(true);
+        txt_borrado.setRows(5);
+        jScrollPane5.setViewportView(txt_borrado);
+
+        jButton1.setBackground(new java.awt.Color(204, 204, 255));
+        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton1.setText("borrar");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 255), null, new java.awt.Color(204, 204, 255)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btn_analizar.setBackground(new java.awt.Color(204, 204, 255));
+        btn_analizar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_analizar.setText("Analizar");
+        btn_analizar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 255), null, new java.awt.Color(204, 204, 255)));
+        btn_analizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_analizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_procesado)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_analizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_analizar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(txt_procesado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Achivos Basura", jPanel4);
@@ -330,8 +372,8 @@ public class Intefaz extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(83, 83, 83)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(22, Short.MAX_VALUE)))
+                    .addComponent(jTabbedPane1)
+                    .addContainerGap()))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 550));
@@ -396,15 +438,54 @@ public class Intefaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSecActionPerformed
 
-    private void jButtonAgregarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarVActionPerformed
-            String perro = jTextFieldVirus.getText();
-            jTextAreaVirus.append("\n"+perro);
-    }//GEN-LAST:event_jButtonAgregarVActionPerformed
-
     private void jButtonAgregarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarSActionPerformed
+        String perro = jTextFieldVirus.getText();
+        jTextAreaVirus.append("\n"+perro);
         String sec = jTextFieldSec.getText();
         jTextAreaSec.append("\n"+sec);
     }//GEN-LAST:event_jButtonAgregarSActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+        Eliminar eliminacion_3= new Eliminar(ficheros);
+        File lista_ficheros[] = eliminacion_3.AgarrarLista();
+        
+        Eliminar eliminacion_4= new Eliminar(ficheros_1);
+        File lista_ficheros_2[]= eliminacion_4.AgarrarLista();
+        
+        eliminacion_3.Borrar();
+        eliminacion_4.Borrar();
+        txt_borrado.setText("Se han borrado: "+(lista_ficheros.length+lista_ficheros_2.length));
+        txt_procesado.setText("Proceso terminado, favor revisar papelera de reciclaje");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_analizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_analizarActionPerformed
+        String sDirectorio = "C:\\Windows\\Temp";
+        String str= System.getProperty("user.name");
+        String aDirectorio= "C:\\Users\\"+str+"\\AppData\\Local\\Temp";
+        
+        try {
+        ficheros= new File(sDirectorio) ;
+        ficheros_1 = new File(aDirectorio);
+
+        Eliminar eliminacion= new Eliminar(ficheros);
+        Eliminar eliminacion_2= new Eliminar(ficheros_1);
+        
+        File fiches1[] = eliminacion.AgarrarLista();
+        File fiches2[] = eliminacion_2.AgarrarLista();
+        
+        txt_arch.setText("Tienes un total de: "+(fiches1.length+fiches2.length)+" archivos basura\n\n\n\nEn la carpeta Temp tienes: "+fiches1.length+"\nEn la carpeta %Temp% tienes: "+fiches2.length);
+        }
+        catch (Exception e){
+            txt_procesado.setText("Hay exceso de archivos.");
+        }
+        
+        
+                
+                
+            
+        
+    }//GEN-LAST:event_btn_analizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,6 +514,12 @@ public class Intefaz extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -443,8 +530,9 @@ public class Intefaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_analizar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAgregarS;
-    private javax.swing.JButton jButtonAgregarV;
     private javax.swing.JButton jButtonAnalizar;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JLabel jLabel1;
@@ -456,6 +544,8 @@ public class Intefaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextAreaContenidoBytes;
     private javax.swing.JTextArea jTextAreaSec;
@@ -466,5 +556,8 @@ public class Intefaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldRuta;
     private javax.swing.JTextField jTextFieldSec;
     private javax.swing.JTextField jTextFieldVirus;
+    private javax.swing.JTextArea txt_arch;
+    private javax.swing.JTextArea txt_borrado;
+    private javax.swing.JTextField txt_procesado;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,6 +2,7 @@
 package Datos;
 
 //Crea atributos para los nombres y secuencias de cada uno de los virus, y crea una instancia para cada uno de ellos. 
+//Además de darle la forma (Virus, secuencia)
 //John Andersson Cardenas y María José Peña Ruiz.
 //16/02/2021
 //¿Cuarentena-Time?
